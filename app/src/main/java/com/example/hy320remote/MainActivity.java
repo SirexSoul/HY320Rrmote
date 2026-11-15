@@ -14,7 +14,7 @@ public class MainActivity extends Activity {
  int dp(float v){return (int)(v*getResources().getDisplayMetrics().density+.5f);}
  LinearLayout layout; Button add(String title,Runnable action){Button b=new Button(this);b.setText(title);layout.addView(b,new LinearLayout.LayoutParams(-1,-2));b.setOnClickListener(v->action.run());return b;}
  void label(String text){TextView t=new TextView(this);t.setText(text);t.setTextSize(17);t.setPadding(0,dp(12),0,dp(8));layout.addView(t);}
- @Override public void onCreate(Bundle b){super.onCreate(b);ScrollView sc=new ScrollView(this);layout=new LinearLayout(this);layout.setOrientation(1);layout.setPadding(dp(20),dp(16),dp(20),dp(30));sc.addView(layout);setContentView(sc);
+ @Override public void onCreate(Bundle b){super.onCreate(b);ScrollView sc=new ScrollView(this);layout=new LinearLayout(this);layout.setOrientation(LinearLayout.VERTICAL);layout.setPadding(dp(20),dp(16),dp(20),dp(30));sc.addView(layout);setContentView(sc);
  sc.setOnApplyWindowInsetsListener((view,insets)->{view.setPadding(insets.getSystemWindowInsetLeft(),insets.getSystemWindowInsetTop(),insets.getSystemWindowInsetRight(),insets.getSystemWindowInsetBottom());return insets;});
  if(Intent.ACTION_SEND.equals(getIntent().getAction())){String shared=getIntent().getStringExtra(Intent.EXTRA_TEXT);getIntent().putExtra("shared_link",shared);}
  label("HY320 Remote · Wi-Fi ADB");ip=new EditText(this);ip.setSingleLine(true);ip.setHint("IP проектора, наприклад 192.168.1.166");ip.setText(getPreferences(0).getString("ip","192.168.1.166"));layout.addView(ip);
